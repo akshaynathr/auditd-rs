@@ -1,5 +1,4 @@
-# AuditRust
-
+# Auditd-rs alpha 0.1
 A developer-friendly eBPF-based audit reporting tool designed to help DevOps and security engineers collect and export audit logs for compliance (e.g., SOC2, ISO 27001).
 
 ## Features
