@@ -1,0 +1,34 @@
+[package]
+name = "auditrust"
+version = "0.1.0"
+edition = "2021"
+authors = ["Your Name <your.email@example.com>"]
+description = "An eBPF-based audit reporting tool for compliance monitoring"
+
+[dependencies]
+# Core dependencies
+bindgen = "0.71"
+tokio = { version = "1.28", features = ["full"] }
+clap = { version = "4.3", features = ["derive"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+serde_yaml = "0.9"
+chrono = { version = "0.4", features = ["serde"] }
+thiserror = "1.0"
+anyhow = "1.0"
+tracing = "0.1"
+tracing-subscriber = "0.3"
+
+# eBPF related
+aya = { version = "0.13.1", features = ["async_tokio"] }
+aya-log = "0.2.1"
+bpf-linker = "0.9"
+
+# File handling and logging
+log = "0.4"
+env_logger = "0.10"
+csv = "1.2"
+sqlx = { version = "0.7", features = ["runtime-tokio-rustls", "sqlite"] }
+
+[dev-dependencies]
+tempfile = "3.8" 

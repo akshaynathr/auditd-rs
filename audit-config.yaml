@@ -1,0 +1,31 @@
+rules:
+  # Monitor sensitive system files
+  - file: /etc/passwd
+    events: [open, write]
+  - file: /etc/shadow
+    events: [open, write]
+  - file: /etc/sudoers
+    events: [open, write]
+  
+  # Monitor log files
+  - file: /var/log/
+    events: [open, write, delete]
+  
+  # Monitor system configuration
+  - file: /etc/
+    events: [write]
+  
+  # Monitor specific processes
+  - process_name: python
+    user: root
+    events: [execute, connect]
+  - process_name: bash
+    user: root
+    events: [execute]
+
+# Logging configuration
+log_dir: /var/log/auditrust
+rotation:
+  max_size: 104857600  # 100MB
+  max_files: 7
+  compress: true 

@@ -1,0 +1,24 @@
+KDIR := /lib/modules/$(shell uname -r)/build
+CLANG := clang
+LLC := llc
+
+TRACE_SRC := trace.c
+TRACE_OBJ := trace.o
+
+all: $(TRACE_OBJ)
+
+$(TRACE_OBJ): $(TRACE_SRC)
+	$(CLANG) -O2 -g -target bpf -D__KERNEL__ -D__TARGET_ARCH_arm64 \
+		-I$(KDIR)/include \
+		-I$(KDIR)/tools/include \
+		-I$(KDIR)/tools/bpf \
+		-I$(KDIR)/arch/arm64/include \
+		-I$(KDIR)/include/uapi \
+		-I$(KDIR)/arch/arm64/include/uapi \
+		-I$(KDIR)/include/generated \
+		-I$(KDIR)/include/generated/uapi \
+		-I$(KDIR)/arch/arm64/include/generated \
+		-c $(TRACE_SRC) -o $(TRACE_OBJ)
+
+clean:
+	rm -f *.o
